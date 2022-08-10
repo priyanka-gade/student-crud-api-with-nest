@@ -24,4 +24,8 @@ export class StudentService {
   updateStudent(id, student) {
     return (this.students[id] = student);
   }
+
+  updatedObStudent(id, student) {
+    return (this.students[id] = student);
+  }
 }

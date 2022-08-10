@@ -6,21 +6,22 @@ import {
   Param,
   Patch,
   Post,
+  Put
 } from '@nestjs/common';
 import { StudentService } from './student.service';
 
 @Controller('student')
 export class StudentController {
   constructor(private studentService: StudentService) {}
-
+//get api
   @Get()
   getAllStudents() {
     return this.studentService.getStudents();
   }
-
+//get
   @Get(':index')
-  getSpecificStudent(@Param() index) {
-    return this.studentService.getSpecificStudent(index);
+  getSpecificStudent(@Param() i:any) {
+    return this.studentService.getSpecificStudent(i.index);
   }
 
   @Post()
@@ -34,7 +35,12 @@ export class StudentController {
   }
 
   @Patch(':id')
-  updateStudent(@Param() id, @Body() student) {
+  updateStudent(@Param('id')  id, @Body() student) {
+    return this.studentService.updateStudent(id, student);
+  }
+
+  @Put(':id')
+  updatedObStudent(@Param('id')  id, @Body() student) {
     return this.studentService.updateStudent(id, student);
   }
 }
